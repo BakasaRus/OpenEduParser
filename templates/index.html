@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Курсы с OpenEdu</title>
+</head>
+<body>
+{% for course in courses %}
+    {{ course.name }}
+{% empty %}
+    Курсов нет.
+{% endfor %}
+</body>
+</html>

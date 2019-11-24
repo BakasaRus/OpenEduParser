@@ -1,6 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Course
 
 
 def index(request):
-    return HttpResponse('<h1>List of courses</h1>')
+    courses = Course.objects.all()
+    context = {
+        courses: courses
+    }
+    return render(request, 'index.html', context)
