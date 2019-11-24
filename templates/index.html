@@ -1,14 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Курсы с OpenEdu</title>
-</head>
-<body>
-{% for course in courses %}
-    {{ course.name }}
-{% empty %}
-    Курсов нет.
-{% endfor %}
-</body>
-</html>
+{% extends 'template.html' %}
+
+{% block title %}
+    Список курсов на OpenEdu
+{% endblock %}
+
+{% block content %}
+    <section class="hero is-primary is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Список курсов на OpenEdu
+                </h1>
+                <h2 class="subtitle">
+                    Всего {{ courses.count }} курсов
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section style="padding: 3rem 0">
+        <div class="container">
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Курс</th>
+                        <th>Организатор</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                        <tr>
+                            <th>{{ course.id }}</th>
+                            <td><a href="/{{ course.id }}">{{ course.name }}</a></td>
+                            <td>{{ course.organizer }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .wrapper {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <main class="wrapper">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="footer has-background-dark has-text-white" style="padding: 3rem 1.5rem">
+        <div class="content has-text-centered">
+            <p>Парсер информации о курсах на платформе <a class="has-text-white" href="https://openedu.ru">"Открытое образование"</a></p>
+        </div>
+    </footer>
+</body>
+</html>

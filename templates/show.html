@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Курс</title>
-</head>
-<body>
-{{ course }}
-</body>
-</html>
+{% extends 'template.html' %}
+
+{% block title %}
+    {{ course.name }}
+{% endblock %}
+
+{% block content %}
+    <section class="hero is-info is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">{{ course.name }}</h1>
+                <h2 class="subtitle">{{ course.organizer.name }}</h2>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container" style="padding: 3rem 0">
+            <div class="content">
+                <h3>Список направлений подготовки</h3>
+                <ul>
+                    {% for group in course.groups.all %}
+                        <li>{{ group.code }} {{ group.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <a href="https://openedu.ru/{{ course.url }}" target="_blank" class="button is-link">Подробнее</a>
+                <a href="/" class="button is-primary">К списку курсов</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
