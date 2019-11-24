@@ -8,35 +8,50 @@
     <section class="hero is-primary is-bold">
         <div class="hero-body">
             <div class="container">
-                <h1 class="title">
-                    Список курсов на OpenEdu
-                </h1>
-                <h2 class="subtitle">
-                    Всего {{ courses.count }} курсов
-                </h2>
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <h1 class="title">
+                            Список курсов на платформе "Открытое образование"
+                        </h1>
+                        <h2 class="subtitle">
+                            Всего {{ courses.count }} курсов
+                        </h2>
+                    </div>
+                    <div class="column is-narrow">
+                        <a href="/update" class="button is-white">Обновить список курсов</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <section style="padding: 3rem 0">
         <div class="container">
-            <table class="table is-fullwidth">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Курс</th>
-                        <th>Организатор</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for course in courses %}
+            {% if courses %}
+                <table class="table is-fullwidth">
+                    <thead>
                         <tr>
-                            <th>{{ course.id }}</th>
-                            <td><a href="/{{ course.id }}">{{ course.name }}</a></td>
-                            <td>{{ course.organizer }}</td>
+                            <th>ID</th>
+                            <th>Курс</th>
+                            <th>Организатор</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for course in courses %}
+                            <tr>
+                                <th>{{ course.id }}</th>
+                                <td><a href="/{{ course.id }}">{{ course.name }}</a></td>
+                                <td>{{ course.organizer }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="message is-warning">
+                    <div class="message-body">
+                        В базе данных парсера курсов нет. Скорее всего, они ещё не были взяты с сайта Открытого образования.
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

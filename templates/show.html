@@ -17,11 +17,15 @@
         <div class="container" style="padding: 3rem 0">
             <div class="content">
                 <h3>Список направлений подготовки</h3>
-                <ul>
-                    {% for group in course.groups.all %}
-                        <li>{{ group.code }} {{ group.name }}</li>
-                    {% endfor %}
-                </ul>
+                {% if course.groups.all %}
+                    <ul>
+                        {% for group in course.groups.all %}
+                            <li>{{ group.code }} {{ group.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    Направления подготовки не указаны.
+                {% endif %}
             </div>
             <div>
                 <a href="https://openedu.ru/{{ course.url }}" target="_blank" class="button is-link">Подробнее</a>
