@@ -12,6 +12,14 @@ def index(request):
     return render(request, 'index.html', context)
 
 
+def show(request, course_id):
+    course = Course.objects.get(id=course_id)
+    context = {
+        'course': course
+    }
+    return render(request, 'show.html', context)
+
+
 def update(request):
     information = Grabber()
     information.get_texts()
